@@ -35,6 +35,8 @@ if h1:
 else:
     title = soup.find("title").get_text(strip=True)
 
+# PAS 2 - TOKENITZACIÓ I NORMALITZACIÓ DEL TEXT
+
 
 print("TITLE:", title)
 print(text)
