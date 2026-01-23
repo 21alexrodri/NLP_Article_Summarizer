@@ -3,3 +3,4 @@ lxml_html_clean
 lxml[html_clean]
 beautifulsoup4
 nltk
+spacy
