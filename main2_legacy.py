@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from tokenization.nltk_tokenize import NLTKTokenizer
 
 TITLES = [
     "ARTICLE MARC",
@@ -16,7 +17,7 @@ url4 = "https://www.nbcnews.com/id/wbna3541441"
 url5 = "https://www.ap.org/the-definitive-source/behind-the-news/spain-train-crash-how-a-journalists-quick-thinking-led-to-vital-info/"
 URLS = [url1, url2, url3, url4, url5]
 
-response = requests.get(url5)
+response = requests.get(url2)
 html = response.text
 soup = BeautifulSoup(html, 'html.parser')
 
@@ -36,7 +37,6 @@ else:
     title = soup.find("title").get_text(strip=True)
 
 # PAS 2 - TOKENITZACIÓ I NORMALITZACIÓ DEL TEXT
-
-
-print("TITLE:", title)
-print(text)
+tokenizer = NLTKTokenizer()
+tokens = tokenizer.clean_tokenize(text)
+print(tokens)
