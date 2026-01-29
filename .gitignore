@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 model/__pycache__
 labels/__pycache__/
+model/__pycache__/nltk_tokenize_class.cpython-313.pyc
+model/__pycache__/topic_classifier_class.cpython-313.pyc

@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from model.nltk_tokenize_class import NLTKTokenizer
 from model.topic_classifier_class import TopicClassifier
+from model.topic_classifier_class_2 import TopicClassifier2
 
 
 TITLES = [
@@ -43,9 +44,11 @@ tokenizer = NLTKTokenizer()
 tokens = tokenizer.clean_tokenize(text)
 
 # PAS 3 - CLASSIFICACIÓ DEL TEXT
-classifier = TopicClassifier()
+classifier = TopicClassifier2()
 text_tokenized = " ".join(tokens[:500])
 classification = classifier.classify(text_tokenized)
 
-for label, score in zip(classification['labels'], classification['scores']):
-    print(f"{label:<15}: {score:.4f}")
+print(classification)
+print("-----------------")
+# for label, score in zip(classification['labels'], classification['scores']):
+#     print(f"{label:<40}: {score:.4f}")
