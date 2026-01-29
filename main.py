@@ -4,6 +4,7 @@ from model.spacy_tokenize_class import SpacyTokenizer
 from model.article_extractor_class import ArticleExtractor
 from model.article_summarizer_class import ArticleSummarizer
 from model.topic_classifier_class import TopicClassifier
+from model.topic_classifier_class_2 import TopicClassifier2
 url = "https://en.nogomania.com/read/Was-it-really-offside-Barca-rage-after-controversial-decision-in-San-Sebastian#goog_rewarded"
 
 # science_article = ArticleExtractor(url)
@@ -80,13 +81,76 @@ if choice in article_urls:
         tokenizer = NLTKTokenizer()
 
     tokens = tokenizer.clean_tokenize(text)
-    print(f"Number of tokens: {len(tokens)}")
     print("✅✅✅ Tokenization completed successfully. ✅✅✅")
 
     # Thematic Classification
     print("\n______________________________\n")
     print("Thematic Classification step...")
-    classifier = TopicClassifier()
+    print("Select the classification method:")
+    print("1 - Zero-Shot Classification (default)")
+    print("2 - Sentence Embedding Classification")
+    classification_choice = input("Enter the number of your choice (1-2): ")
+    if classification_choice == "1":
+        classifier = TopicClassifier()
+        classification_result = classifier.classify(text)
+    elif classification_choice == "2":
+        classifier = TopicClassifier2()
+        classification_result = classifier.classify(text)
+    
+    print("✅✅✅ Thematic Classification completed successfully. ✅✅✅")
+    
+    # Article Summarization
+    print("\n______________________________\n")
+    print("Article Summarization step...")
+    print("Select the summarization method:")
+    print("1 - Raw text (default)")
+    print("2 - Tokenized text")
+    summarization_choice = input("Enter the number of your choice (1-2): ")
+    summarizer = ArticleSummarizer()
+    if summarization_choice == "1":
+        summary = summarizer.summarize(text)
+    elif summarization_choice == "2":
+        tokenized_text = ' '.join(tokens)
+        summary = summarizer.summarize(tokenized_text)
+    
+    print("✅✅✅ Article Summarization completed successfully. ✅✅✅")
+
+    print("\n______________________________\n")
+
+    print("🎊🎊🎊 FINAL RESULTS 🎊🎊🎊\n")
+
+    value = -1
+    while value != "0":
+        print("Select the result to display:")
+        print("1 - Article Title")
+        print("2 - Article Text")
+        print("3 - Tokenized Text")
+        print("4 - Thematic Classification")
+        print("5 - Article Summary")
+        print("0 - Exit")
+        value = input("Enter the number of your choice (0-5): ")
+        match value:
+            case "1":
+                print("\n--- Article Title ---")
+                print(extractor.title)
+            case "2":
+                print("\n--- Article Text ---")
+                print(text)
+            case "3":
+                print("\n--- Tokenized Text ---")
+                print(tokens)
+            case "4":
+                print("\n--- Thematic Classification ---")
+                for label, score in zip(classification_result['labels'], classification_result['scores']):
+                    print(f"{label:<40}: {score:.4f}")
+            case "5":
+                print("\n--- Article Summary ---")
+                print(summary)
+            case "0":
+                print("Exiting the program. Goodbye!")
+            case _:
+                print("❌❌❌ Invalid choice. Please try again. ❌❌❌")
+
     
 
 
