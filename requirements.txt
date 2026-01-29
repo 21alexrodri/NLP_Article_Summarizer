@@ -6,3 +6,4 @@ nltk
 spacy
 transformers
 torch
+hf_xet

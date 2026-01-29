@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from tokenization.nltk_tokenize import NLTKTokenizer
 from model.topic_classifier_class import TopicClassifier
 
+
 TITLES = [
     "ARTICLE MARC",
     "LAMINE YAMAL",
@@ -43,10 +44,50 @@ tokens = tokenizer.clean_tokenize(text)
 
 # PAS 3 - CLASSIFICACIÓ DEL TEXT
 classifier = TopicClassifier()
-print("TEXTITO")
-texto_tokenized = " ".join(tokens[:500])
-print(texto_tokenized)
-classification = classifier.classify(texto_tokenized)
+text_tokenized = " ".join(tokens[:500])
+classification = classifier.classify(text_tokenized)
 
 for label, score in zip(classification['labels'], classification['scores']):
     print(f"{label:<15}: {score:.4f}")
+
+    '''
+    TEXT TOKENIZED ARTICLE MARC (1500)
+        Entertainment  : 0.1715
+        Business       : 0.1512
+        Science        : 0.1380
+        Politics       : 0.1239
+        Technology     : 0.1215
+        Sports         : 0.1115
+        Health         : 0.0986
+        Society        : 0.0839
+
+    TEXT NORMAL ARTICLE MARC (1500)
+        Health         : 0.1893
+        Science        : 0.1741
+        Technology     : 0.1740
+        Business       : 0.1416
+        Society        : 0.1109
+        Politics       : 0.0780
+        Entertainment  : 0.0665
+        Sports         : 0.0656
+
+    TEXT NORMAL ARTICLE MARC (full)
+        Entertainment  : 0.3059
+        Business       : 0.1783
+        Technology     : 0.1348
+        Science        : 0.1192
+        Society        : 0.0849
+        Health         : 0.0816
+        Sports         : 0.0487
+        Politics       : 0.0467
+
+    TEXT TOKENIZED ARTICLE MARC (full)
+        Entertainment  : 0.1715
+        Business       : 0.1512
+        Science        : 0.1380
+        Politics       : 0.1239
+        Technology     : 0.1215
+        Sports         : 0.1115
+        Health         : 0.0986
+        Society        : 0.0839
+    '''
