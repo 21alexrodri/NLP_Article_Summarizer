@@ -7,3 +7,5 @@ spacy
 transformers
 torch
 hf_xet
+sentence-transformers
+scikit-learn
