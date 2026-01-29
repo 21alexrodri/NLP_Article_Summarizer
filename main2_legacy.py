@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from tokenization.nltk_tokenize import NLTKTokenizer
-from topic_classifier.topic_classifier import TopicClassifier
+from model.nltk_tokenize_class import NLTKTokenizer
+from model.topic_classifier_class import TopicClassifier
 
 
 TITLES = [
