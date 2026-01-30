@@ -92,10 +92,10 @@ if choice in article_urls:
     classification_choice = input("Enter the number of your choice (1-2): ")
     if classification_choice == "1":
         classifier = TopicClassifier()
-        classification_result = classifier.classify(text)
     elif classification_choice == "2":
         classifier = TopicClassifier2()
-        classification_result = classifier.classify(text)
+
+    classification_result = classifier.classify(" ".join(tokens[:500]))
     
     print("✅✅✅ Thematic Classification completed successfully. ✅✅✅")
     
