@@ -127,6 +127,7 @@ if choice in article_urls:
         print("3 - Tokenized Text")
         print("4 - Thematic Classification")
         print("5 - Article Summary")
+        print("6 - All Results")
         print("0 - Exit")
         value = input("Enter the number of your choice (0-5): ")
         match value:
@@ -141,9 +142,23 @@ if choice in article_urls:
                 print(tokens)
             case "4":
                 print("\n--- Thematic Classification ---")
-                for label, score in zip(classification_result['labels'], classification_result['scores']):
-                    print(f"{label:<40}: {score:.4f}")
+                if isinstance(classification_result, dict):
+                    for label, score in zip(classification_result['labels'], classification_result['scores']):
+                        print(f"{label:<40}: {score:.4f}")
+                elif isinstance(classification_result, list):
+                    for label, score in classification_result:
+                        print(f"{label:<40}: {score:.4f}")
             case "5":
+                print("\n--- Article Summary ---")
+                print(summary)
+            case "6":
+                print("\n--- Thematic Classification ---")
+                if isinstance(classification_result, dict):
+                    for label, score in zip(classification_result['labels'], classification_result['scores']):
+                        print(f"{label:<40}: {score:.4f}")
+                elif isinstance(classification_result, list):
+                    for label, score in classification_result:
+                        print(f"{label:<40}: {score:.4f}")
                 print("\n--- Article Summary ---")
                 print(summary)
             case "0":
@@ -157,12 +172,3 @@ if choice in article_urls:
     
 else:
     print("❌❌❌ Invalid choice. Exiting the program. ❌❌❌")
-
-
-
-
-# tokenizer = SpacyTokenizer()
-# tokens = tokenizer.clean_tokenize(text)
-# print(tokens)
-
-
