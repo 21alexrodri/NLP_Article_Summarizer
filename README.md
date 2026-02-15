@@ -17,7 +17,9 @@ The following articles are used as examples to test the pipeline:
 1. Install dependencies:  
 ```bash
 pip install -r requirements.txt
+```
 
 2. Run the pipeline
+```
 python main.py
-
+```
